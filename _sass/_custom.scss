@@ -1,0 +1,152 @@
+/* 
+    Put your custom SCSS here! 
+    This allows you to override any CollectionBuilder or Bootstrap CSS without modifying the base theme files directly.
+*/
+
+/* base */
+h1 {
+    font-family: 'Merriweather';
+}
+
+.serif-title {
+    font-family: 'Merriweather';
+}
+
+.site-title {
+    color: #7c2529 !important;
+}
+
+.site-title:hover {
+    color: #C8102E !important;
+}
+
+.nav-item-top > a {
+    padding: 0;
+    color: #7c2529 !important;
+    margin: 0;
+    border-radius: 0;
+    font-family: Arial,Helvetica Neue,sans-serif;
+    font-weight: 700;   
+}
+
+.nav-item-top > a:hover {
+    color: #c8102e !important;
+}
+
+.nav-item-top > a.active {
+    color: #c8102e !important;
+}
+
+.dropdown-menu > a {
+    color: #7c2529 !important;
+    font-family: Arial,Helvetica Neue,sans-serif;
+    font-weight: 700;   
+}
+
+.dropdown-menu > a:hover {
+    color: #c8102e !important;
+}
+
+.dropdown-menu > a.active {
+    color: #c8102e !important;
+    background-color: #fff !important;
+}
+
+// fix info btn text color
+.btn-info, .btn-outline-info,
+.btn-info:hover, .btn-outline-info:hover {
+    color: #fff;
+}
+
+/* navbar */
+#nav-logo {
+    max-height: 55px;
+}
+
+/* browse */
+.fixed-height {
+    height: 300px;
+    object-fit: cover;
+}
+
+/* override icon styles */
+.icon-nav {
+    width: 1em;
+    height: 1em;
+    vertical-align: -0.1em;
+}
+
+/* index */
+#home-title-box {
+    padding-top: 5em;
+    padding-bottom: 15em;
+}
+#carouselInner {
+    .carousel-caption {
+        max-width: 750px;
+        margin-left: auto;
+    }
+}
+#imageCarousel .carousel-item { height: 600px; }
+
+/* footer */
+.footer-section-label {
+    font-size: 1rem;
+    line-height: 1.25;
+    margin-top: 3.75rem !important;
+    padding: 0; 
+    color: #fff;
+    font-size: 1.125rem;
+    line-height: 1.44444;
+    font-family: Merriweather,serif;
+    font-weight: 700;
+}
+
+.footer-links > a:hover {
+    color: #f1be48;
+}
+
+.footer-list {
+    color: white;
+    text-decoration: underline;
+    text-decoration-thickness: auto;
+    font-family: Arial,Helvetica Neue,sans-serif;
+    font-weight: 700;
+    text-decoration-thickness: .0625rem;
+    text-underline-offset: .0625rem;
+    font-size: 1rem;
+    line-height: 1.75;
+}
+
+.footer-text {
+    color: white;
+    font-family: Arial,Helvetica Neue,sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    line-height: 1.75;
+}
+
+.footer-list > a {
+    color: #fff;
+    font-family: Arial,Helvetica Neue,sans-serif;
+    font-weight: 700;
+    font-size: .9375rem;
+    text-decoration: underline;
+    line-height: 1.4;
+    padding: 0 .5rem;
+}
+
+.footer-list > a:hover {
+    color: #f1be48;
+}
+
+/* scroll-to-top btn-link custom styling */
+.btn-link {
+    color: #7c2529 !important;
+    text-decoration: none !important;
+}
+
+.btn-link:hover, .btn-link:focus {
+    color: #c8102e !important;
+    text-decoration: none !important;
+}

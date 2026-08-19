@@ -1,0 +1,12 @@
+<!-- Bootstrap bundle JS -->
+<script src="{{ '/bootstrap5/bootstrap.bundle.min.js' | prepend: site.digital-assets }}"></script>
+<!-- load other js -->
+<script src="{{ '/js/lazysizes.min.js' | prepend: site.digital-assets }}" async></script>
+{% if layout.gallery == true or page.gallery == true %}<script src="{{ '/js/spotlight.bundle.js' | prepend: site.digital-assets }}" defer></script>{% endif %}
+{% if page.custom-foot or layout.custom-foot %}
+{%- assign page_feet = page.custom-foot | split: ";" -%}
+{%- assign layout_feet = layout.custom-foot | split: ";" -%}
+{%- assign feet = page_feet | concat: layout_feet -%}
+{% for f in feet %}{% include {{ f }} %}
+{% endfor %}
+{%- endif -%}

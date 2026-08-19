@@ -1,0 +1,33 @@
+{% assign fcount = site.data.config-table | size %}
+<!-- load DataTables with jquery bundled -->
+<script type="text/javascript" language="javascript" src="{{ '/bootstrap5/datatables/datatables.min.js' | prepend: site.digital-assets }}"></script>
+<script>
+/* use jquery to initialize DataTables and load collection data */
+$(document).ready( function () {
+    $('#item-table').DataTable( {
+        // use DataTables ajax load 
+        ajax: { url: '{{ "/assets/js/metadata.min.json" | relative_url }}', dataSrc: 'objects' },
+        // defer render to speed up large sets
+        "deferRender": true,
+        // enable pagination 
+        "paging": true,
+        "lengthMenu": [[ 25, 50, 100, -1], [ 25, 50, 100, "All"]],
+        // add download features
+        dom: 'B<"row mt-2"<"col-md-6"l><"col-md-6"f>>t<"row"<"col-md-6"i><"col-md-6"p>>', 
+        buttons: [ 'excelHtml5', 'csvHtml5' ],
+        // get the data from json
+        // title,item_count,description,categories,data_location,url
+        columns: [ {% for i in (0..fcount) %}{ data: '{{ i }}' }{% unless forloop.last %},{% endunless %}{% endfor %} ],
+        columnDefs: [ 
+            // combine link with first column
+            { "render": function ( data, type, row ) { return '<a href="' + row['{{ fcount }}'] +'">'+ data +'</a>'; },"targets": 0 },
+            // hide the link column
+            { "visible": false,  "targets": [ {{ fcount }} ] },
+            // create data download btn column
+            { "render": function ( data, type, row) { return `<a href="${row[4]}/metadata.json" class="btn btn-sm btn-primary mb-2">Metadata JSON</a><br><a href="${row[4]}/metadata.csv" class="btn btn-sm btn-outline-primary mb-2">Metadata CSV</a>`; }, "targets": 4 }
+        ],
+        // sort based on 
+        order: [[ 0, "asc" ]]
+    });
+});
+</script>

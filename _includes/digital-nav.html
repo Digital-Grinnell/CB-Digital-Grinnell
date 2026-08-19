@@ -1,0 +1,51 @@
+<div class="container-fluid bg-light py-3 px-3">
+    <div class="row align-items-center">
+        <div class="col-md-9">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="container-fluid">
+                    <a class="navbar-brand fs-2 d-flex align-items-center me-md-5 serif-title site-title" href="{{ '/' | relative_url }}">
+                        <span>Digital Collections</span>
+                    </a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#page-nav" aria-controls="page-nav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="page-nav">
+                        <ul class="navbar-nav me-auto">
+                            {%- assign navItems = site.data.config-nav | where_exp: 'item', 'item.dropdown_parent == nil' -%} 
+                            {% for nav in navItems %}
+                            {% if nav.stub %}
+                            <li class="nav-item nav-item-top">
+                                <a class="nav-link{% if page.url == nav.stub %} active{% endif %}" href="{{ nav.stub | relative_url }}">{{ nav.display_name }}</a>
+                            </li>
+                            {%- else -%}
+                            <li class="nav-item nav-item-top dropdown">
+                                {% assign navChildren = site.data.config-nav | where_exp: 'item', 'item.dropdown_parent == nav.display_name' %}
+                                {%- assign childStubs = navChildren | map: 'stub' -%}
+                                <a class="nav-link  dropdown-toggle{% if childStubs contains page.url %} active{% endif %}" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">{{ nav.display_name }}</a>
+                                <div class="dropdown-menu">
+                                    {% for c in navChildren %}
+                                    <a class="dropdown-item {% if page.url == c.stub %}active{% endif %}" href="{{ c.stub | relative_url }}">{{ c.display_name }}</a>
+                                    {% endfor %}
+                                </div>
+                            </li>
+                            {% endif %}
+                            {%- endfor -%}
+                            <li class="nav-item d-md-none">
+                                <a class="nav-link" href="https://www.lib.iastate.edu">
+                                    <img id="nav-logo" class="img-fluid" src="https://isuu00001library102stg.z21.web.core.windows.net/assets/media/ISU_Library_Center_Red.png" title="Iowa State University Library" alt="Iowa State University Library" >
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+        <div class="col-md-3 bg-light align-items-center d-none d-md-block text-end">
+            <div class="container-fluid mb-3 mb-md-0">
+                <a href="https://www.lib.iastate.edu">
+                    <img id="nav-logo" class="img-fluid" src="https://isuu00001library102stg.z21.web.core.windows.net/assets/media/ISU_Library_Center_Red.png" title="Iowa State University Library" alt="Iowa State University Library" >
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

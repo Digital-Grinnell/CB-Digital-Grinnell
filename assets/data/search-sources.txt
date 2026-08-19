@@ -1,0 +1,6 @@
+---
+# generate a list of all search json
+---
+{%- assign items = site.data[site.metadata] | where_exp: 'item','item.objectid' | where: 'search_index', 'TRUE' | where: 'status', 'published' | sort: 'data_location' -%}
+{% for item in items %}{{ item.data_location }}/search.json
+{% endfor %}

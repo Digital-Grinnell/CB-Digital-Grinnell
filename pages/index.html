@@ -1,0 +1,103 @@
+---
+layout: default
+title: Home
+permalink: /
+custom-foot: js/index-js.html
+---
+
+<div id="home-banner" class="mb-0 p-0 position-relative">
+    <div class="container">
+        <div id="home-title-box" class="row justify-content-center">
+            <div class="col-md-9">
+                <div class="card bg-dark bg-opacity-75">
+                    <div class="card-body text-center">
+                        <h1 class="text-white mt-3 mb-4 h2">
+                            <small>Iowa State University Library</small><br>
+                            <span class="display-4">Digital Collections</span>
+                        </h1>
+
+                        <form title="Search all digital collection items" role="search" id="collection-search" class="mb-5 px-md-5" action="https://digitalcollections.lib.iastate.edu/search">
+                            <div class="input-group input-group-lg ">
+                                <input type="search" name="search_terms" class="form-control" id="search-collections" placeholder="Search all items..." >    
+                                <button class="btn btn-cardinal" type="submit" title="Submit search" id="search-collections-button" >Search</button>
+                            </div>
+                        </form>
+
+                        <!--<div class="alert alert-warning alert-dismissible feature-alert text-start" role="alert">
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            <h2>Digital Collections Work in Progress!</h2>
+                            <p>Behind the scenes we are migrating our digital collections platform to bring better performance and search functionality to our distinctive collections. To explore our collections:</p>
+                            <ul>
+                                <li>Use our temporary <a href="{{ '/google.html' | relative_url }}"><strong>Google Custom Search</strong></a> to search across collections. Full cross-collection search will be restored in late spring 2025. Please note: the Google item level search does not yet include a full text search of all items.</li>
+                                <li>Use the search box on the <a href="{{ '/collections.html' | relative_url }}"><strong>Collections page</strong></a> to <strong>filter and view collections of interest</strong>.</li>
+                                <li>Within each collection, search for items using the <strong>search bar in the collection's navigation menu</strong>.</li>
+                            </ul>
+                            <p>We apologize for the inconvenience and appreciate your patience as we complete this transition. Please <a href="https://app.smartsheet.com/b/form/9ab4361fffaf4d2f96684ba9a52c0dd8" target="_blank" rel="noopener"><strong>contact us</strong></a> with any questions.</p>
+                        </div>-->
+                        
+                        <hr class="text-green-light w-50 mx-auto">
+
+                        <h2 class="card-title text-white h5">Browse Collections by Topic:</h2>
+                        {% assign topics = "Iowa History;Ornithology;Technology;Agriculture;Architecture;Art" | split: ';' %}
+                        {% for t in topics %}
+                        <a class="btn btn-gold my-2 mx-1" href="{{ '/collections.html' | relative_url }}#{{ t | url_param_escape }}">{{ t }}</a>
+                        {% endfor %}
+                        <br>
+                        <a class="btn btn-primary mt-3 mx-2" href="{{ '/collections.html' | relative_url }}">Browse All Collections</a>
+
+                        <div class="text-end">
+                            <a tabindex="0" role="button" class="btn btn-sm btn-outline-light ms-2 popover-dismiss" data-bs-toggle="popover" data-bs-trigger="focus" data-bs-placement="top" data-bs-title="Digital Collection Tips" data-bs-content="Use the search box above to query all items in our complete digital collections index. To find individual collections, explore the browse topic buttons or other options in the navigation.">
+                                <span class="visually-hidden">Tips</span> 
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi icon-sprite" viewBox="0 0 16 16">
+                                    <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16m.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2"/>
+                                </svg>
+                            </a>
+                        </div>
+                        
+                        <!--<div class="text-end">
+                            <a tabindex="0" role="button" class="btn btn-sm btn-outline-light ms-2 popover-dismiss" data-bs-toggle="popover" data-bs-trigger="focus" data-bs-placement="top" data-bs-title="Digital Collection Tips" data-bs-content="Use the search box above to query all items in our complete digital collections index. To find individual collections, explore the browse topic buttons or other options in the navigation.">
+                                <span class="visually-hidden">Tips</span> 
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi icon-sprite" viewBox="0 0 16 16">
+                                    <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16m.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2"/>
+                                </svg>
+                            </a>
+                        </div>-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="featured-image-link" class="position-absolute bottom-0 end-0 px-2 bg-dark bg-opacity-75"></div>
+</div>
+
+<script>
+    // direct search to google
+    function search_collections() {
+        var searchTerms = document.getElementById('search-collections').value;
+        var searchUrl = 'google.html?q=' + encodeURIComponent(searchTerms);
+        window.location.href = searchUrl;
+    }
+
+    // set up banner images
+    var bannerImages = [ 
+        {% for b in site.data.banner-feature-images %}{ "src": "{{ b.src }}", "position": "{{ b.position | default: 'center' }}", "alt": "{{ b.title }}", "link": "{{ b.link }}" }{% unless forloop.last %},{% endunless %} {% endfor %}
+    ];
+    var featuredImage = bannerImages.sort(function() { return 0.5 - Math.random() }).pop();
+    // set background image
+    var homeBanner = document.getElementById("home-banner");
+    homeBanner.style.backgroundImage = `url(${featuredImage.src})`;
+    homeBanner.style.backgroundRepeat = "no-repeat";
+    homeBanner.style.backgroundSize = "cover";
+    homeBanner.style.backgroundPosition = featuredImage.position;
+    //homeBanner.style.backgroundAttachment = "fixed";
+    // set featured image link
+    document.getElementById("featured-image-link").innerHTML = `<a class="text-white fs-6" href="${featuredImage.link}" title="${featuredImage.alt}">Featured Image</a>`;
+
+    // browse collections
+    /*
+    function search_collections() {
+        var query = document.getElementById("search-collections").value;
+        window.open("{{ '/collections.html' | relative_url }}#" + encodeURI(query) , "_self" );
+    }
+    */
+</script>

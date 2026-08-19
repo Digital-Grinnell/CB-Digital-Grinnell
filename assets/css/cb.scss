@@ -1,0 +1,33 @@
+---
+# base CSS for collectionbuilder
+# includes some theming options
+# pulled in from "theme.yml" and "config-theme-colors.csv"
+---
+@charset "utf-8";
+
+/* base variables pulled from theme.yml */
+$base-font-family: {{ site.data.theme.base-font-family | default: "Arial, Helvetica Neue, sans-serif" }};
+$base-font-size: {{ site.data.theme.base-font-size | default: "1.1em" }};
+$text-color: {{ site.data.theme.text-color | default: "#111" }};
+$link-color: {{ site.data.theme.link-color | default: "#00AEC7" }};
+
+/* theme colors pulled from config-theme-colors */
+{% assign btns = site.data.config-theme-colors | where_exp: "item","item.color != nil" %}
+{% if btns != empty %}
+{% for btn in btns %}
+{% assign color = btn.color | strip %}{% if color != empty %}
+${{ btn.color_class | slugify }}: {{ color }};{% endif %}
+{% endfor %}
+$theme-colors: () !default;
+$theme-colors: map-merge(
+  (
+    {% for btn in btns %}{% assign color = btn.color | strip %}{% if color != empty %}
+    "{{ btn.color_class | slugify }}": ${{ btn.color_class | slugify }}{% unless forloop.last %},{% endunless %}
+    {% endif %}{% endfor %}
+  ),
+  $theme-colors
+);
+@import "theme-colors", "theme-utilities";
+{% endif %}
+
+@import "base", "pages", "custom";

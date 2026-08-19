@@ -1,0 +1,105 @@
+---
+# collections browse page
+layout: page
+custom-foot: js/browse-js.html 
+---
+
+<div class="row">
+    <div class="col-md-4 col-lg-3 order-md-last px-4 pt-4">
+        <div class="d-grid d-md-none">
+            <button class="btn btn-sm btn-outline-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFilters" aria-expanded="false" aria-controls="collapseFilters" >Filter Collections</button>
+        </div>
+        <div class="collapse d-md-block" id="collapseFilters">
+
+            <div class="accordion" id="filtersAccordion">
+                <div class="accordion-item">
+                    <h3 class="accordion-header">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#filtersAccordionSubjects" aria-expanded="true" aria-controls="filtersAccordionSubjects">
+                            Subjects
+                        </button>
+                    </h3>
+                    <div id="filtersAccordionSubjects" class="accordion-collapse collapse show" data-bs-parent="filtersAccordion">
+                        <div class="accordion-body">
+                            {% assign subjects = site.data[site.metadata] | map: "categories" | join: ';' | split: ';' | compact | uniq | sort %}
+                            {% for s in subjects %}
+                            <a href="{{ '/collections.html' | relative_url }}#{{ s }}">{{ s }}</a>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h3 class="accordion-header">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#filtersAccordionLocations" aria-controls="filtersAccordionLocations">
+                            Locations
+                        </button>
+                    </h3>
+                    <div id="filtersAccordionLocations" class="accordion-collapse collapse" data-bs-parent="filtersAccordion">
+                        <div class="accordion-body">
+                            {% assign locations = site.data[site.metadata] | map: "location" | join: ';' | split: ';' | compact | uniq | sort %}
+                            {% for s in locations %}
+                            <a href="{{ '/collections.html' | relative_url }}#{{ s }}">{{ s }}</a>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h3 class="accordion-header">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#filtersAccordionMedia" aria-expanded="true" aria-controls="filtersAccordionMedia">
+                            Media Types
+                        </button>
+                    </h3>
+                    <div id="filtersAccordionMedia" class="accordion-collapse collapse" data-bs-parent="filtersAccordion">
+                        <div class="accordion-body">
+                            {% assign media = site.data[site.metadata] | map: "media_types" | join: ';' | split: ';' | compact | uniq | sort %}
+                            {% for s in media %}
+                            <a href="{{ '/collections.html' | relative_url }}#{{ s }}">{{ s }}</a>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+                
+
+        </div>
+    </div>
+
+    <div class="col-md-8 col-lg-9 p-4">
+
+        <div class="row mb-3 justify-content-center">
+            <div class="col-md-8 text-center">
+                <form role="search" id="lunrSearch" onsubmit="submitFilter(); return false;">
+                    <div class="input-group input-group-lg">
+                        <input type="text" class="form-control" id="filterTextBox" placeholder="Filter ... " aria-label="Search"> 
+                        <button class="btn btn-pride-gold" type="submit" title="Filter items" id="filterButton" >Search</button>
+                        <button class="btn btn-outline-secondary filter" onclick="resetFilter(); return false;" data-filter="">Reset</button>
+                    </div>
+                </form>
+                <div class="h2" id="numberOf"></div>
+            </div>
+            <div class="col-md-2">
+                <div class="dropdown">
+                    <button class="btn btn-secondary mt-1 dropdown-toggle" type="button" id="browseSortButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Sort by <span id="sortFilter">Random</span>
+                    </button>
+                    <div class="dropdown-menu browse-sort-menu" aria-labelledby="browseSortButton">
+                        <button class="dropdown-item browse-sort-item active" data-filter="random">Random</button>
+                        <button class="dropdown-item browse-sort-item" data-filter="title">Title</button>
+                        {% assign sort_options = site.data.config-browse | where_exp: 'i','i.sort_name != nil' %}
+                        {% for o in sort_options %}
+                        <button class="dropdown-item browse-sort-item" data-filter="{{ o.field | escape }}">{{ o.sort_name }}</button>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="loadingIcon" class="text-center">
+            <div class="spinner-border text-dark" role="status"><span class="visually-hidden">Loading...</span></div>
+        </div>
+
+        <div class="row" id="browseItems"></div>
+
+    </div>
+    
+</div>
