@@ -20,3 +20,5 @@ Idaho uses YouTube to do the same.
 
 ISU has a custom search data json generator, a Flask app, coupled with MongoDB and ElasticSearch for cross-collection search capabilities.  
 
+This solution is due for overhaul under an IMLS grant early in 2027.  For now I'm committed to trying to make `PageFind` work for DG at Grinnell.  If that fails, the ISU solution using `ElasticSearch` will do.  
+
