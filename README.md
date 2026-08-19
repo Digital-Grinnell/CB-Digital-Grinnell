@@ -1,4 +1,4 @@
-# CB-Digital.Grinnell
+# CB-Digital-Grinnell
 
 Home for all things related to Digital.Grinnell using CollectionBuilder.  This repo began as a clone and independent copy of `https://github.com/isu-digital/digitalcollections.lib`.    
 
