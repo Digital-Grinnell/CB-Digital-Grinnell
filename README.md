@@ -22,3 +22,6 @@ ISU has a custom search data json generator, a Flask app, coupled with MongoDB a
 
 This solution is due for overhaul under an IMLS grant early in 2027.  For now I'm committed to trying to make `PageFind` work for DG at Grinnell.  If that fails, the ISU solution using `ElasticSearch` will do.  
 
+### Faculty Example
+
+The following site, outside of `digitalcollections` is from a faculty member at ISU: https://digital.lib.iastate.edu/projects/campuscornerstones/.  
