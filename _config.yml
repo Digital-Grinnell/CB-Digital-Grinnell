@@ -7,30 +7,36 @@
 ##########
 # URL VARIABLES
 #
-# site domain, full URL to the production location of your collection
-url: https://digitalcollections.lib.iastate.edu
+# site domain, full URL to the production location of your collection.  
+# was url: https://digitalcollections.lib.iastate.edu
+url: "https://digitalgrinnell-secondary.z19.web.core.windows.net/"
 # path to location on the domain if necessary e.g. /digital/hjccc
 baseurl: 
-# location of code, the full url to your github repository
-source-code: https://github.com/isu-digital/digitalcollections.lib
+# location of code, the full url to your github repository.  
+# was source-code: https://github.com/isu-digital/digitalcollections.lib
+source-code: https://github.com/Digital-Grinnell/CB-Digital-Grinnell
 
-# url to the shared assets folder on mainweb
+# url to the shared assets folder on mainweb.  
+# was digital-assets: https://isuu00001library102stg.z21.web.core.windows.net/assets
 digital-assets: https://isuu00001library102stg.z21.web.core.windows.net/assets
 
 ##########
 # SITE SETTINGS
 #
-# title of site appears in banner
-title: Digital Collections - Iowa State University Library
+# title of site appears in banner.  
+# was title: Digital Collections - Iowa State University Library
+title: Digital Grinnell 
 # tagline, a short phrase that will appear throughout the site in the top banner
 tagline:
 # description appears in meta tags and other locations
 # this description might appear in search result lists, keep around 160 characters max
 description: ""
-# keywords, a short list of subjects describing the collection, separated by semicolon, to appear in rich markup
-keywords: Iowa State University; digital collections; history; archival research
-# creator of the digital collection, to appear in meta tags; we typically use our GitHub usernames but feel free to just use your name
-author: isu-digital
+# keywords, a short list of subjects describing the collection, separated by semicolon, to appear in rich markup.  
+# was keywords: Iowa State University; digital collections; history; archival research
+keywords: Grinnell College; digital collections; history; archival research
+# creator of the digital collection, to appear in meta tags; we typically use our GitHub usernames but feel free to just use your name.  
+# was author: isu-digital
+author: Digital-Grinnell
 
 ##########
 # COLLECTION SETTINGS

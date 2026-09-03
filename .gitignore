@@ -11,6 +11,11 @@ vendor/
 # Ignore mac files 
 .DS_Store
 
+# Ignore local environment configuration and credentials
+.env
+.env.*
+!.env.example
+
 # temporarily ignore gemfile.lock
 Gemfile.lock
 
