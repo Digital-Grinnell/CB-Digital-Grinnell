@@ -82,3 +82,6 @@ exclude: [docs/, Rakefile, rakelib/, README.md, LICENSE, CODEOWNERS, utilities/,
 # compress CSS output
 sass:
   style: compressed
+  # partials rely on @import's shared global scope (theme vars set in cb.scss
+  # before importing _sass/*); migrating to @use/@forward needs a real rewrite
+  silence_deprecations: [import]
