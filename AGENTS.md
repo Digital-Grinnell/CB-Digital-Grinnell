@@ -22,3 +22,7 @@
 - Enabled static website hosting with `index.html` and `404.html` as the configured documents.
 - Assigned the current user the `Storage Blob Data Contributor` role at the storage-account scope for Azure CLI Blob operations.
 - Local Azure CLI commands use `AZURE_STORAGE_AUTH_MODE=login` and `AZURE_STORAGE_ACCOUNT=digitalgrinnell` from an untracked `.env` file; no storage key or SAS is stored locally.
+
+### 2026-09-04
+
+- Updated Sass files for Dart Sass module compatibility; verified with `bundle exec jekyll build --destination /tmp/cb-digital-grinnell-sass-fix-build`.

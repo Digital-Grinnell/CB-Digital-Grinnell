@@ -2,6 +2,11 @@
 
 Home for all things related to Digital.Grinnell using CollectionBuilder.  This repo began as a clone and independent copy of `https://github.com/isu-digital/digitalcollections.lib`.    
 
+## Site Details
+
+As of September 2 the site deploys to: https://digitalgrinnell-secondary.z19.web.core.windows.net/ under a new `digitalgrinnell` Azure storage account.
+
+
 ## Resources from August 19, 2026, Discussion with Iowa State University
 
 ISU is all-in on Azure!  
