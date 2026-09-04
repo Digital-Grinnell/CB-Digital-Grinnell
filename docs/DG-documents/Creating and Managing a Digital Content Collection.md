@@ -2,6 +2,34 @@
 
 This runbook describes the Digital Grinnell model for publishing a collection as an independent CollectionBuilder site. It uses the Theatre, Dance and Performance Studies Production Archive (`tdps`) as its example.
 
+## Deploy the main site
+
+Use this procedure only to publish the root Digital Grinnell directory site from the `main` branch. It uploads the generated site directly to the Azure static website's `$web` container, replacing root files such as `index.html` and `collections.html`.
+
+```sh
+git switch main
+git pull --ff-only origin main
+
+rake deploy
+
+source .env
+az storage blob upload-batch \
+  --destination '$web' \
+  --source _site \
+  --overwrite
+```
+
+`rake deploy` sets `JEKYLL_ENV=production` and builds the current branch into `_site/`. `source .env` loads the local Azure account and authentication-mode settings; the file is untracked and must not contain a storage key or SAS token.
+
+Do not include `--destination-path` when deploying `main`. A destination path such as `tdps` publishes a collection below `$web/tdps/` and does not replace the root directory site.
+
+After the upload completes, verify the root site and its collection directory:
+
+```text
+https://digitalgrinnell-secondary.z19.web.core.windows.net/
+https://digitalgrinnell-secondary.z19.web.core.windows.net/collections.html
+```
+
 ## The publishing model
 
 One repository serves two different purposes:
