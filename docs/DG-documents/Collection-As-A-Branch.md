@@ -57,6 +57,8 @@ Neither this fork nor ISU’s current remote retains those branches. Both expose
 
 ## Sample Guidance
 
+> Note: Detailed guidance can now be found in the `Creating a New Collection` markdown document.  
+
 For a new inner collection named `aaap`:
 
 ```zsh
