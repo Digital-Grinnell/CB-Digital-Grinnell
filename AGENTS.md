@@ -26,3 +26,4 @@
 ### 2026-09-04
 
 - Updated Sass files for Dart Sass module compatibility; verified with `bundle exec jekyll build --destination /tmp/cb-digital-grinnell-sass-fix-build`.
+- Restored the collection-management runbook after the TDPS revert; verified with `git diff --check -- "docs/DG-documents/Creating and Managing a Digital Content Collection.md"`.
