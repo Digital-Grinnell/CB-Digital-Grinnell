@@ -1,7 +1,7 @@
 ---
-title: Browse Items
+title: Browse Collections
 layout: browse
-permalink: /browse.html
+permalink: /collections.html
 ---
 
-# Browse Items
+# Browse Digital Collections

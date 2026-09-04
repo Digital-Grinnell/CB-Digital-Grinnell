@@ -1,4 +1,4 @@
-{%- assign items = site.data[site.metadata] | where_exp: 'item','item.objectid and item.parentid == nil' -%}
+{%- assign items = site.data[site.metadata] | where_exp: 'item','item.objectid and item.status == "published"' -%}
 {%- assign fields = site.data.config-browse -%}
 <script>
 
@@ -11,7 +11,7 @@ var items = [
         "title":{{ item.title | strip | escape | jsonify }},
         {% if item.tagline %}"tagline": {{ item.tagline | strip | escape | jsonify }}, {% endif %}
         "description": {{ item.description | jsonify }},
-        "link": "{{ '/items/' | relative_url }}{{ item.objectid | slugify: 'pretty' }}.html",
+        "link": "{{ item.url }}",
         "id":{{ item.objectid | jsonify }} }{% unless forloop.last %},{% endunless %}{%- endfor -%}
 ];
 

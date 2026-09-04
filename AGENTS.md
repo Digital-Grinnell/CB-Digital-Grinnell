@@ -26,4 +26,3 @@
 ### 2026-09-04
 
 - Updated Sass files for Dart Sass module compatibility; verified with `bundle exec jekyll build --destination /tmp/cb-digital-grinnell-sass-fix-build`.
-- Restored the CollectionBuilder page generator and converted the `tdps` branch from the inherited portal browse flow to an item collection; verified with `bundle exec jekyll build --destination /tmp/tdps-final-site-check`.

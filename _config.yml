@@ -18,7 +18,6 @@ source-code: https://github.com/Digital-Grinnell/CB-Digital-Grinnell
 
 # url to the shared assets folder on mainweb.  
 # was digital-assets: https://isuu00001library102stg.z21.web.core.windows.net/assets
-# digital-assets: https://digitalgrinnell-secondary.z19.web.core.windows.net/assets
 digital-assets: https://isuu00001library102stg.z21.web.core.windows.net/assets
 
 ##########
@@ -60,15 +59,10 @@ metadata: digital_collections
 #   Enter information for your organization (replacing the CDIL links and name below) if you'd like to brand your site with a logo
 #   To remove the branding, comment out these values, or delete them. 
 #
-# was...
-# organization-name: "Iowa State University Library Digital Collections"
-# organization-link: https://www.lib.iastate.edu/
-# organization-logo-banner: https://isuu00001library102stg.z21.web.core.windows.net/assets/media/dclogo_edited.png
-# organization-logo-nav: https://isuu00001library102stg.z21.web.core.windows.net/assets/media/ISU_Library_Center_White.png
-organization-name: "Digital Grinnell"
-organization-link: https://www.grinnell.edu/academics/libraries
-organization-logo-banner: https://digitalgrinnell.blob.core.windows.net/theme-elements/grinnell-college-logo.png
-organization-logo-nav: https://digitalgrinnell.blob.core.windows.net/theme-elements/grinnell-college-logo.png
+organization-name: "Iowa State University Library Digital Collections"
+organization-link: https://www.lib.iastate.edu/
+organization-logo-banner: https://isuu00001library102stg.z21.web.core.windows.net/assets/media/dclogo_edited.png
+organization-logo-nav: https://isuu00001library102stg.z21.web.core.windows.net/assets/media/ISU_Library_Center_White.png
 
 ##########
 # ROBOTS EXCLUDE

@@ -6,10 +6,6 @@ Home for all things related to Digital.Grinnell using CollectionBuilder.  This r
 
 As of September 2 the site deploys to: https://digitalgrinnell-secondary.z19.web.core.windows.net/ under a new `digitalgrinnell` Azure storage account.
 
-## See `Creating and Managing a Digital Content Collection` 
-
-That file comes in both .md and .pdf versions.  
-
 
 ## Resources from August 19, 2026, Discussion with Iowa State University
 
