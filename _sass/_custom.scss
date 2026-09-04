@@ -59,8 +59,14 @@ h1 {
 }
 
 /* navbar */
-#nav-logo {
-    max-height: 55px;
+.nav-logo {
+    height: 70px;
+    max-width: 100%;
+    width: auto;
+}
+
+.organization-logo-link {
+    display: inline-block;
 }
 
 /* browse */

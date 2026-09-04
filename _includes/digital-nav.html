@@ -4,7 +4,7 @@
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
                 <div class="container-fluid">
                     <a class="navbar-brand fs-2 d-flex align-items-center me-md-5 serif-title site-title" href="{{ '/' | relative_url }}">
-                        <span>Digital Collections</span>
+                        <span>{{ site.title | escape }}</span>
                     </a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#page-nav" aria-controls="page-nav" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
@@ -31,8 +31,8 @@
                             {% endif %}
                             {%- endfor -%}
                             <li class="nav-item d-md-none">
-                                <a class="nav-link" href="https://www.lib.iastate.edu">
-                                    <img id="nav-logo" class="img-fluid" src="https://isuu00001library102stg.z21.web.core.windows.net/assets/media/ISU_Library_Center_Red.png" title="Iowa State University Library" alt="Iowa State University Library" >
+                                <a class="nav-link" href="{{ site.organization-link }}" target="_blank" rel="noopener">
+                                    <img class="nav-logo img-fluid" src="{{ site.organization-logo-nav }}" title="{{ site.organization-name | escape }}" alt="{{ site.organization-name | escape }}" >
                                 </a>
                             </li>
                         </ul>
@@ -42,8 +42,8 @@
         </div>
         <div class="col-md-3 bg-light align-items-center d-none d-md-block text-end">
             <div class="container-fluid mb-3 mb-md-0">
-                <a href="https://www.lib.iastate.edu">
-                    <img id="nav-logo" class="img-fluid" src="https://isuu00001library102stg.z21.web.core.windows.net/assets/media/ISU_Library_Center_Red.png" title="Iowa State University Library" alt="Iowa State University Library" >
+                <a class="organization-logo-link" href="{{ site.organization-link }}" target="_blank" rel="noopener">
+                    <img class="nav-logo img-fluid" src="{{ site.organization-logo-nav }}" title="{{ site.organization-name | escape }}" alt="{{ site.organization-name | escape }}" >
                 </a>
             </div>
         </div>
