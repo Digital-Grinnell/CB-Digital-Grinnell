@@ -83,9 +83,9 @@ custom-foot: js/index-js.html
         {% for b in site.data.banner-feature-images %}{ "src": "{{ b.src }}", "position": "{{ b.position | default: 'center' }}", "alt": "{{ b.title }}", "link": "{{ b.link }}" }{% unless forloop.last %},{% endunless %} {% endfor %}
     ];
     var featuredImage = bannerImages.sort(function() { return 0.5 - Math.random() }).pop();
-    // set background image
+    // set background image (encodeURI guards against spaces/special chars in filenames)
     var homeBanner = document.getElementById("home-banner");
-    homeBanner.style.backgroundImage = `url(${featuredImage.src})`;
+    homeBanner.style.backgroundImage = `url(${encodeURI(featuredImage.src)})`;
     homeBanner.style.backgroundRepeat = "no-repeat";
     homeBanner.style.backgroundSize = "cover";
     homeBanner.style.backgroundPosition = featuredImage.position;
