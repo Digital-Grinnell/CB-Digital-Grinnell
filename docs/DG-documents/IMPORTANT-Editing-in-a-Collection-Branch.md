@@ -2,6 +2,9 @@
 
 > Consider this extremely `IMPORTANT` advice!  
 
+> Also, `tdps` is an EXAMPLE collection ID.  Be sure to substitute your collection ID in place of `tdps` here.  
+
+
 Since you ran `git switch -c tdps`, your working directory is now checked out to the `tdps` branch — this is a workspace-wide state, not a per-file setting. Here's what that means in practice:
 
 **How it works**

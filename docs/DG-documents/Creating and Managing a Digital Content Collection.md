@@ -75,6 +75,8 @@ git switch -c tdps
 
 From this point onward, edits to `_config.yml`, pages, templates, and `_data/tdps.csv` belong to the `tdps` branch. Do not make collection-specific changes on `main`.
 
+> See `docs/DG-documents/IMPORTANT-Editing-in-a-Collection-Branch.md` for details and guidance!    
+
 ## Add item metadata
 
 Put the collection's item-level data in:
