@@ -220,7 +220,7 @@ Apply that same link to the card's thumbnail image, not only the title text and 
 
 Do not use the portal-only filter `item.status == "published"` for item metadata. That field belongs to `digital_collections.csv`, where each row describes an entire collection. TDPS item rows do not use it, which previously resulted in a `0 of 0 items` browse display.
 
-A fresh checkout of `main` still carries the portal defaults for all three of these: `pages/collections.md` has `title: Browse Collections` and `permalink: /collections.html`, and `_includes/js/browse-js.html` filters on `item.status == "published"` and links to the external `item.url` with an unlinked thumbnail. Every new collection branch needs these edits unless the fixes have already been merged into `main` (see "Starting a second collection branch" below).
+A fresh checkout of `main` still carries the portal defaults for all three of these: `pages/collections.md` has `title: Browse Collections` and `permalink: /collections.html`, and `_includes/js/browse-js.html` filters on `item.status == "published"` and links to the external `item.url` with an unlinked thumbnail. That is correct for `main`'s own portal directory page (see "Starting a second collection branch" below) but must be edited on every new item-collection branch.
 
 Collection navigation should route to item-site pages. The current TDPS configuration uses:
 
@@ -418,11 +418,11 @@ If metadata changes add, rename, or remove object IDs, compare the old and new g
 
 ## Starting a second collection branch
 
-Do not branch a new collection from an existing collection branch such as `tdps`. Branch from `main`, as in "Create a collection branch" above. A collection branch carries collection-specific state that a new collection does not want as a starting point: its item CSV, its `_config.yml` values (`baseurl`, `metadata`), its nav CSV, and its homepage content. Branching from `tdps` means immediately deleting or overwriting most of what makes the branch distinct, which is more error-prone than starting clean from `main` and re-applying the small set of generic template fixes.
+Do not branch a new collection from an existing collection branch such as `tdps`. Branch from `main`, as in "Create a collection branch" above. A collection branch carries collection-specific state that a new collection does not want as a starting point: its item CSV, its `_config.yml` values (`baseurl`, `metadata`), its nav CSV, and its homepage content. Branching from `tdps` means immediately deleting or overwriting most of what makes the branch distinct, which is more error-prone than starting clean from `main` and re-applying the small set of item-collection template edits.
 
-Those generic fixes, however, are worth carrying forward once instead of repeating for every collection. The `pages/collections.md` and `_includes/js/browse-js.html` edits described above and in the troubleshooting table below fix bugs in the shared portal template; they are not TDPS-specific. Consider cherry-picking just those file changes from `tdps` onto `main` (for example, `git checkout tdps -- _includes/js/browse-js.html` while on a `main`-based branch, followed by review and a commit to `main`) so that future collection branches inherit a working browse page from the start instead of rediscovering the same three bugs.
+Do not cherry-pick `pages/collections.md` or `_includes/js/browse-js.html` from `tdps` onto `main`. These files are shared by both the portal directory page and every item collection's browse page, but each reads it differently: `main`'s `_data/digital_collections.csv` has no `parentid` column and depends on the `item.status == "published"` filter and the external `item.url` link to keep the public directory correct, while `main` has no `_plugins/cb_page_gen.rb` and therefore generates no `/items/` pages at all. Overwriting these files with the `tdps` versions would make every unpublished collection visible on the root directory and send every card to a nonexistent `/items/<objectid>.html` page. The `objectid`/`parentid` filter, the `/items/` link, and the linked thumbnail are correct only for an item collection branch and must be reapplied on each new collection branch, not merged into `main`.
 
-Keep genuinely collection-specific work — item metadata, `_config.yml` identifiers, navigation, and branding — out of `main` and scoped to each collection's own branch.
+Keep genuinely collection-specific work — item metadata, `_config.yml` identifiers, navigation, branding, and the browse-page filter/link edits — out of `main` and scoped to each collection's own branch.
 
 ## Troubleshooting
 
