@@ -57,7 +57,7 @@ function makeCard(obj) {
     // build card
     var card = `<div class="item col-lg-4 col-md-6 mb-4">
         <div class="card">
-            <img class="card-img-top fixed-height lazyload " src="${placeholder}" data-src="${imgSrc}" alt="${imgAlt}">
+            <a href="${itemHref}" title="link to ${obj.title}"><img class="card-img-top fixed-height lazyload " src="${placeholder}" data-src="${imgSrc}" alt="${imgAlt}"></a>
             <div class="card-body text-center">
                 <h3 class="card-title "><a href="${itemHref}" class="text-dark">${obj.title}</a></h3>
                 ${ obj.tagline ? `<p><small>${obj.tagline}</small></p>` : ``}
