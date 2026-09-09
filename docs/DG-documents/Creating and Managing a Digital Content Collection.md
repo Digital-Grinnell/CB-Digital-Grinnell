@@ -30,6 +30,8 @@ https://digitalgrinnell-secondary.z19.web.core.windows.net/
 https://digitalgrinnell-secondary.z19.web.core.windows.net/collections.html
 ```
 
+The public hostname ends in `-secondary` because it is the storage account's RA-GRS secondary (read-only, geo-replicated) endpoint, while `az storage blob upload-batch` always writes to the primary endpoint (`AZURE_STORAGE_ACCOUNT=digitalgrinnell`, no `-secondary`). Uploaded content is not necessarily visible on the public URL the instant the upload finishes; there is a short asynchronous replication delay before the secondary endpoint catches up, typically well under a few minutes. If you check the public site immediately after a deploy and still see old content or an image, this delay is the most likely cause, not a broken deploy. Wait briefly and reload (a hard refresh rules out browser caching as a separate cause) before troubleshooting further. `az storage blob show --name <path> --auth-mode login --query properties.lastModified` against the primary account confirms whether the upload itself actually landed.
+
 ## The publishing model
 
 One repository serves two different purposes:
