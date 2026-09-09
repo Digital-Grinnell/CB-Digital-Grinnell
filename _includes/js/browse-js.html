@@ -44,7 +44,7 @@ function makeCard(obj) {
         var btns = obj[{{ f.field | jsonify }}].split(";");
         for (var i = 0, len = btns.length; i < len; i++) {
             if(btns[i] != "") {
-            otherFields += '<a class="btn btn-sm btn-secondary m-1 text-wrap" href="{{ '/collections.html' | relative_url }}#' + encodeURIComponent(btns[i].trim()) + '">' + btns[i].trim() + '</a>';
+            otherFields += '<a class="btn btn-sm btn-secondary m-1 text-wrap" href="{{ '/browse.html' | relative_url }}#' + encodeURIComponent(btns[i].trim()) + '">' + btns[i].trim() + '</a>';
             }
         }
         {% else %}

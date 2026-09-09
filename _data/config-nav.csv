@@ -1,7 +1,9 @@
 display_name,stub,dropdown_parent
-Search,https://digitalcollections.lib.iastate.edu/search,
-Collections,/collections.html
-FAQ,/faq.html
-About,
-Digital Collections,/about.html,About
-Metadata Fields,/metadata.html,About
+Home,/
+Browse,/browse.html
+Subjects,/subjects.html
+Locations,/locations.html
+Map,/map.html
+Timeline,/timeline.html
+Data,/data.html
+About,/about.html
