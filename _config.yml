@@ -12,6 +12,10 @@
 url: "https://digitalgrinnell-secondary.z19.web.core.windows.net/"
 # path to location on the domain if necessary e.g. /digital/hjccc
 baseurl: 
+# URL of the root Digital Grinnell portal, used by the nav "Digital Grinnell" brand link.
+# Leave blank on main (the portal itself). Set to the portal's absolute URL on every collection branch,
+# so the brand link returns visitors to the portal instead of this collection's own homepage.
+portal-url: 
 # location of code, the full url to your github repository.  
 # was source-code: https://github.com/isu-digital/digitalcollections.lib
 source-code: https://github.com/Digital-Grinnell/CB-Digital-Grinnell
