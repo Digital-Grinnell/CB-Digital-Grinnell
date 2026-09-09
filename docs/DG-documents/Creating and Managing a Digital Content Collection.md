@@ -188,9 +188,20 @@ organization-logo-banner: https://digitalgrinnell.blob.core.windows.net/theme-el
 organization-logo-nav: https://digitalgrinnell.blob.core.windows.net/theme-elements/grinnell-college-logo.png
 ```
 
-The TDPS branch uses the configurable `_includes/footer.html` through `_layouts/default.html`. This avoids the inherited hard-coded Iowa State footer. Its homepage, `pages/index.html`, is collection-specific and links to `/browse.html`.
+The TDPS branch uses `_layouts/default.html` with `{% include footer.html %}`, a generic footer that builds its "Quick Links" dynamically from `_data/config-nav.csv` and reads branding from `_config.yml`. Do not leave `default.html` including `lib-footer.html`: that include hard-codes an Iowa State red color scheme and a `/collections.html` link that does not exist on an item-collection branch. Its homepage, `pages/index.html`, must link to `/browse.html` (not `/collections.html`) and must not submit its search form to an external host; it does neither by default on a fresh checkout of `main` (see the checklist below).
 
-Review inherited content before publication. In this repository, `pages/about.md`, `pages/faq.md`, `_data/banner-feature-images.csv`, and some legacy templates contain Iowa State text or links. Keep only pages that are appropriate for the collection, or rewrite them for Digital Grinnell.
+Review inherited content before publication. In this repository, `pages/about.md`, `pages/faq.md`, `404.html`, `_data/banner-feature-images.csv`, and some legacy templates contain Iowa State text or links. Keep only pages that are appropriate for the collection, or rewrite them for Digital Grinnell.
+
+### Verifying the homepage, navigation, and footer are actually collection-specific
+
+Describing a file as "collection-specific" in this runbook is not the same as it having been edited. A `main`-derived branch starts with the portal's generic versions of `pages/index.html`, `_data/config-nav.csv`, and `_layouts/default.html`, and nothing prevents a build from succeeding while those files still point at the portal. Confirm each of the following on the collection branch, not just on `main`:
+
+```sh
+grep -n 'collections\.html\|iastate\.edu' pages/index.html _data/config-nav.csv
+grep -n 'lib-footer.html' _layouts/default.html
+```
+
+The first command should return nothing (aside from any deliberately retained content you have already reviewed). The second command should show `footer.html`, not `lib-footer.html`. If either check fails, edit the file before considering the collection branch ready to deploy; a successful `bundle exec jekyll build` does not catch a homepage that still searches an external site or a footer that still links to a page the collection doesn't have.
 
 ## Browse, navigation, and item links
 
@@ -222,7 +233,7 @@ Do not use the portal-only filter `item.status == "published"` for item metadata
 
 A fresh checkout of `main` still carries the portal defaults for all three of these: `pages/collections.md` has `title: Browse Collections` and `permalink: /collections.html`, and `_includes/js/browse-js.html` filters on `item.status == "published"` and links to the external `item.url` with an unlinked thumbnail. That is correct for `main`'s own portal directory page (see "Starting a second collection branch" below) but must be edited on every new item-collection branch.
 
-Collection navigation should route to item-site pages. The current TDPS configuration uses:
+Collection navigation should route to item-site pages. The current TDPS configuration in `_data/config-nav.csv` uses:
 
 ```csv
 display_name,stub,dropdown_parent
@@ -456,3 +467,5 @@ On September 9, 2026, a local `bundle exec jekyll serve` review of that same bra
 - `_includes/js/browse-js.html` still used the portal `item.status == "published"` filter and linked cards to the external `item.url`; it was updated to filter on `objectid`/top-level `parentid` and link to the generated item page, and the thumbnail image was wrapped in that same link.
 
 All TDPS `objectid` and `parentid` values that originated as `dg_...` were also namespaced with a `tdps_` prefix, to avoid collisions if object IDs are ever compared or merged across collections.
+
+A closer review that same day found that three more files had never actually been customized for TDPS, despite this runbook describing them as already collection-specific: `pages/index.html` still submitted its search form to `https://digitalcollections.lib.iastate.edu/search` and linked its browse buttons to the nonexistent `/collections.html`; `_data/config-nav.csv` was still the portal's nav (external search link, `Collections` pointing to `/collections.html`); and `_layouts/default.html` still included `lib-footer.html`, a hard-coded Iowa State-styled footer whose "Collections" quick link also pointed at `/collections.html`. All three were fixed and committed on `tdps`, and the verification checklist above was added so this gap is caught by inspection rather than assumed from documentation.
