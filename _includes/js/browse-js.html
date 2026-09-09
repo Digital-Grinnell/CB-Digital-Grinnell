@@ -61,7 +61,7 @@ function makeCard(obj) {
             <div class="card-body text-center">
                 <h3 class="card-title "><a href="${itemHref}" class="text-dark">${obj.title}</a></h3>
                 ${ obj.tagline ? `<p><small>${obj.tagline}</small></p>` : ``}
-                <a href="${itemHref}" class="btn btn-secondary-blue" title="link to ${obj.title}">Visit Collection</a>
+                <a href="${itemHref}" class="btn btn-secondary-blue" title="link to ${obj.title}">Visit Object</a>
                 <button class="btn btn-outline-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-${obj.id}" aria-expanded="false" aria-controls="collapse-${obj.id}">Details</button>
                 <div class="collapse" id="collapse-${obj.id}">
                     <hr>
