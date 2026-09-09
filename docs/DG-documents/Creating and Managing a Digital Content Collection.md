@@ -216,7 +216,11 @@ Each card links to the generated static item page:
 {{ '/items/' | relative_url }}{{ item.objectid | slugify: 'pretty' }}.html
 ```
 
+Apply that same link to the card's thumbnail image, not only the title text and the "Visit Collection" button. The stock browse card markup in `_includes/js/browse-js.html` does not wrap the `<img>` in an `<a>`; without that change, clicking the title or button navigates correctly, but clicking the picture itself does nothing.
+
 Do not use the portal-only filter `item.status == "published"` for item metadata. That field belongs to `digital_collections.csv`, where each row describes an entire collection. TDPS item rows do not use it, which previously resulted in a `0 of 0 items` browse display.
+
+A fresh checkout of `main` still carries the portal defaults for all three of these: `pages/collections.md` has `title: Browse Collections` and `permalink: /collections.html`, and `_includes/js/browse-js.html` filters on `item.status == "published"` and links to the external `item.url` with an unlinked thumbnail. Every new collection branch needs these edits unless the fixes have already been merged into `main` (see "Starting a second collection branch" below).
 
 Collection navigation should route to item-site pages. The current TDPS configuration uses:
 
@@ -412,6 +416,14 @@ git push
 
 If metadata changes add, rename, or remove object IDs, compare the old and new generated item paths and remove obsolete Azure blobs only after confirming the replacement site. Use precise blob paths rather than deleting broad prefixes casually.
 
+## Starting a second collection branch
+
+Do not branch a new collection from an existing collection branch such as `tdps`. Branch from `main`, as in "Create a collection branch" above. A collection branch carries collection-specific state that a new collection does not want as a starting point: its item CSV, its `_config.yml` values (`baseurl`, `metadata`), its nav CSV, and its homepage content. Branching from `tdps` means immediately deleting or overwriting most of what makes the branch distinct, which is more error-prone than starting clean from `main` and re-applying the small set of generic template fixes.
+
+Those generic fixes, however, are worth carrying forward once instead of repeating for every collection. The `pages/collections.md` and `_includes/js/browse-js.html` edits described above and in the troubleshooting table below fix bugs in the shared portal template; they are not TDPS-specific. Consider cherry-picking just those file changes from `tdps` onto `main` (for example, `git checkout tdps -- _includes/js/browse-js.html` while on a `main`-based branch, followed by review and a commit to `main`) so that future collection branches inherit a working browse page from the start instead of rediscovering the same three bugs.
+
+Keep genuinely collection-specific work — item metadata, `_config.yml` identifiers, navigation, and branding — out of `main` and scoped to each collection's own branch.
+
 ## Troubleshooting
 
 | Symptom | Likely cause | Correction |
@@ -425,6 +437,7 @@ If metadata changes add, rename, or remove object IDs, compare the old and new g
 | Root directory does not list TDPS | The root `main` build has not been redeployed or its catalog data lacks a TDPS row | Update `_data/digital_collections.csv` on `main`, build, and upload `_site` to `$web/` without `--destination-path`. |
 | Azure TDPS site works but root site is unchanged | Upload used `--destination-path tdps` | This is expected. Deploy `main` separately to the root. |
 | Old item URL remains public after deletion | `upload-batch --overwrite` never deletes blobs | Remove only the known obsolete blobs after validating the new deployment. |
+| A browse card's title and button navigate, but clicking the thumbnail image does nothing | The card's `<img>` is not wrapped in the item-page `<a>` | Wrap the thumbnail in the same `href` as the title link in `_includes/js/browse-js.html`. |
 
 ## Verified TDPS baseline
 
@@ -435,3 +448,11 @@ bundle exec jekyll build --destination /tmp/tdps-final-site-check
 ```
 
 The build completed successfully, generated 73 top-level item pages, and produced a populated `/browse.html` with `/tdps/items/` links. The 15 rows without `objectid` were excluded by the generator as expected.
+
+On September 9, 2026, a local `bundle exec jekyll serve` review of that same branch found three additional issues, all now fixed and committed on `tdps`:
+
+- `_data/tdps.csv` had one duplicate `objectid` (`tdps_dg_1786459286`, used by two different rows); the second row and its child records were renumbered to a unique ID.
+- `pages/collections.md` still had the portal's default `title` and `permalink`, so no `/browse.html` was generated; it was updated to the TDPS values shown above.
+- `_includes/js/browse-js.html` still used the portal `item.status == "published"` filter and linked cards to the external `item.url`; it was updated to filter on `objectid`/top-level `parentid` and link to the generated item page, and the thumbnail image was wrapped in that same link.
+
+All TDPS `objectid` and `parentid` values that originated as `dg_...` were also namespaced with a `tdps_` prefix, to avoid collisions if object IDs are ever compared or merged across collections.
