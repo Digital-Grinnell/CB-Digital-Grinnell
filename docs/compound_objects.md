@@ -57,3 +57,22 @@ These are the basic conventions:
 - The image listed in image_thumb and image_small of the parent will be used to represent the item in all visualizations.
 - You can use the Compound Objects options in the theme page to determine if you would like your compound objects to show up in the timeline, map, or browse pages.
 - Default visualizations (except the item page) use *only* the parent record, so child records are not searchable on the browse page of search page.
+
+## One-Level Nested `multiple` Inside `compound_object`
+
+This repository also supports one additional non-recursive pattern: a child of
+a `compound_object` may itself use `display_template: multiple`.
+
+This is intended for a single extra layer only:
+
+- Top-level parent record: `display_template: compound_object`
+- Nested container record: `display_template: multiple`, with `parentid` pointing to the compound parent
+- Nested image records: direct children of the `multiple` record, with `parentid` pointing to that `multiple` record
+
+Behavior and limits:
+
+- The nested `multiple` record is displayed inside the compound child modal.
+- Its image children are rendered inline inside that modal as a simple multiple-image gallery.
+- No recursive nesting is supported beyond this single extra layer.
+- The nested image records do not receive standalone item pages.
+- Global browse, map, and timeline behavior should continue to treat the top-level compound record as the main searchable/displayed item.
