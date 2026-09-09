@@ -3,7 +3,7 @@
         <div class="col-md-9">
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
                 <div class="container-fluid">
-                    <a class="navbar-brand fs-2 d-flex align-items-center me-md-5 serif-title site-title" href="{{ '/' | relative_url }}">
+                    <a class="navbar-brand fs-2 d-flex align-items-center me-md-5 serif-title site-title" href="{% if site.portal-url %}{{ site.portal-url }}{% else %}{{ '/' | relative_url }}{% endif %}">
                         <span>{{ site.title | escape }}</span>
                     </a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#page-nav" aria-controls="page-nav" aria-expanded="false" aria-label="Toggle navigation">
