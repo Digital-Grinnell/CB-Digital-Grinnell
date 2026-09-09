@@ -11,7 +11,7 @@
 # was url: https://digitalcollections.lib.iastate.edu
 url: "https://digitalgrinnell-secondary.z19.web.core.windows.net/"
 # path to location on the domain if necessary e.g. /digital/hjccc
-baseurl: 
+baseurl: "/tdps"
 # location of code, the full url to your github repository.  
 # was source-code: https://github.com/isu-digital/digitalcollections.lib
 source-code: https://github.com/Digital-Grinnell/CB-Digital-Grinnell
@@ -43,7 +43,7 @@ author: Digital-Grinnell
 #
 # Set the metadata for your collection (the name of the CSV file in your _data directory that describes the objects in your collection) 
 # Use the filename of your CSV **without** the ".csv" extension! E.g. _data/demo-metadata.csv --> "demo-metadata"
-metadata: digital_collections
+metadata: tdps
 # page generation settings [optional!]
 # [optional: only used if you need to tweak CB defaults or generate from more than one data file]
 # page_gen:
