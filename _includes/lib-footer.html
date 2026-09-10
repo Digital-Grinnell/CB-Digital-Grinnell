@@ -13,9 +13,15 @@
                 <p class="text-white footer-section-label">Quick Links</p>
                 <div class="row">
                     <div class="col-md-4 footer-links">
-                        <a href="{{ '/collections.html' | relative_url }}" class="footer-list">Collections</a>
-                        <br>
-                        <a href="{{ '/about.html' | relative_url }}" class="footer-list">About</a>
+                        {%- assign navItems = site.data.config-nav | where_exp: 'item', 'item.dropdown_parent == nil' -%}
+                        {% for nav in navItems %}
+                        {% if nav.stub %}
+                        <a href="{{ nav.stub | relative_url }}" class="footer-list">{{ nav.display_name }}</a>{% unless forloop.last %}<br>{% endunless %}
+                        {%- else -%}
+                        {% assign childStub = site.data.config-nav | where_exp: 'item', 'item.dropdown_parent == nav.display_name' | first %}
+                        <a href="{{ childStub.stub | relative_url }}" class="footer-list">{{ nav.display_name }}</a>{% unless forloop.last %}<br>{% endunless %}
+                        {% endif %}
+                        {% endfor %}
                     </div>
                 </div>
             </div>
