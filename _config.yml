@@ -22,8 +22,7 @@ portal-url: "https://digitalgrinnell-secondary.z19.web.core.windows.net/"
 source-code: https://github.com/Digital-Grinnell/CB-Digital-Grinnell
 
 # url to the shared assets folder on mainweb.  
-# was digital-assets: https://isuu00001library102stg.z21.web.core.windows.net/assets
-digital-assets: https://isuu00001library102stg.z21.web.core.windows.net/assets
+digital-assets: https://digitalgrinnell-secondary.z19.web.core.windows.net/assets
 
 ##########
 # SITE SETTINGS
@@ -69,6 +68,12 @@ organization-name: "Digital Grinnell"
 organization-link: https://www.grinnell.edu/academics/libraries
 organization-logo-banner: https://digitalgrinnell-secondary.z19.web.core.windows.net/assets/img/grinnell-college-logo.png
 organization-logo-nav: https://digitalgrinnell-secondary.z19.web.core.windows.net/assets/img/grinnell-college-logo.png
+
+##########
+# Search
+#   Set to true to re-enable the Lunr site search (nav link, quick-search box, and /search/ page).
+#   Left false for now since the deployed search still reflects Iowa State's collection.
+search-enabled: false
 
 ##########
 # ROBOTS EXCLUDE

@@ -30,6 +30,8 @@ https://digitalgrinnell-secondary.z19.web.core.windows.net/
 https://digitalgrinnell-secondary.z19.web.core.windows.net/collections.html
 ```
 
+The public hostname ends in `-secondary` because it is the storage account's RA-GRS secondary (read-only, geo-replicated) endpoint, while `az storage blob upload-batch` always writes to the primary endpoint (`AZURE_STORAGE_ACCOUNT=digitalgrinnell`, no `-secondary`). Uploaded content is not necessarily visible on the public URL the instant the upload finishes; there is a short asynchronous replication delay before the secondary endpoint catches up, typically well under a few minutes. If you check the public site immediately after a deploy and still see old content or an image, this delay is the most likely cause, not a broken deploy. Wait briefly and reload (a hard refresh rules out browser caching as a separate cause) before troubleshooting further. `az storage blob show --name <path> --auth-mode login --query properties.lastModified` against the primary account confirms whether the upload itself actually landed.
+
 ## The publishing model
 
 One repository serves two different purposes:
@@ -65,15 +67,25 @@ az login
 
 ## Create a collection branch
 
-Start from a current `main` branch. Substitute the collection slug everywhere shown as `tdps`.
+Start from `collection-template`, not `main`. `main` is the portal branch and deliberately does not contain the item-collection machinery (page generator, item browse page, item-collection navigation). `collection-template` already has these pieces stripped of any specific collection's data, so a new branch built from it does not need any of the manual file-copy steps below. Substitute the collection slug everywhere shown as `tdps`.
 
 ```sh
-git switch main
-git pull --ff-only origin main
+git switch collection-template
+git pull --ff-only origin collection-template
 git switch -c tdps
 ```
 
-From this point onward, edits to `_config.yml`, pages, templates, and `_data/tdps.csv` belong to the `tdps` branch. Do not make collection-specific changes on `main`.
+If `collection-template` is unavailable and you must branch from `main`, you have to manually add the item-collection files that `main` does not carry. After `git switch -c tdps` from `main`, copy them from an existing working collection branch (e.g. `tdps` or `collection-template`) and adapt as described in the sections below:
+
+```sh
+git checkout tdps -- _plugins/cb_page_gen.rb _includes/js/browse-js.html
+```
+
+Then still perform the "Browse, navigation, and item links" edits later in this document (converting `pages/collections.md` into `pages/browse.md`-equivalent front matter, and updating `_data/config-nav.csv`) — these are not copied verbatim because they reference the collection's own title and slug.
+
+From this point onward, edits to `_config.yml`, pages, templates, and `_data/tdps.csv` belong to the `tdps` branch. Do not make collection-specific changes on `main` or `collection-template`.
+
+> See `docs/DG-documents/IMPORTANT-Editing-in-a-Collection-Branch.md` for details and guidance!    
 
 ## Add item metadata
 
@@ -441,7 +453,8 @@ Keep genuinely collection-specific work — item metadata, `_config.yml` identif
 | --- | --- | --- |
 | Local root URL returns 404, but `/tdps/` loads | The collection uses `baseurl: "/tdps"` | Test at `http://127.0.0.1:4000/tdps/`. This is expected. |
 | Browse page says `0 of 0 items` | The browse code is using the portal `status == "published"` condition, or `metadata` does not match the CSV base name | Filter on `objectid` and top-level `parentid`, and set `metadata: tdps`. |
-| `_site/items/` is absent | `_plugins/cb_page_gen.rb` is missing or item records lack valid `objectid` values | Restore the CollectionBuilder page generator and verify item IDs. |
+| `_site/items/` is absent | `_plugins/cb_page_gen.rb` is missing or item records lack valid `objectid` values | Restore the CollectionBuilder page generator and verify item IDs. This is the most common result of branching from `main` instead of `collection-template`. |
+| `/browse.html` 404s but the collection tile on the portal links to it | `pages/collections.md` was never converted to the item browse page (`layout: browse`, `permalink: /browse.html`), or the branch was created from `main` instead of `collection-template` | Convert `pages/collections.md` per "Browse, navigation, and item links" above, and prefer branching new collections from `collection-template`. |
 | Browse cards link to an external collection URL | A portal browse template is still in use | Link to `{{ '/items/' | relative_url }}{{ item.objectid | slugify: 'pretty' }}.html`. |
 | The site has Iowa State branding | Inherited pages, `lib-footer.html`, or hard-coded navigation are still active | Use configurable `footer.html`, update organization settings, and review retained pages/templates. |
 | CSS and JavaScript are missing | `digital-assets` points to Azure before the shared vendor assets have been uploaded | Restore the Iowa State shared asset URL temporarily, or upload and verify the complete vendor tree at `$web/assets/`. |
