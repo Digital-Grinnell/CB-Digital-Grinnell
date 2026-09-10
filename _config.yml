@@ -63,9 +63,11 @@ metadata: georgia-dentel_metadata
 #   To remove the branding, comment out these values, or delete them. 
 #
 organization-name: "Digital Grinnell"
-organization-link: https://www.grinnell.edu/academics/libraries
-organization-logo-banner: https://digitalgrinnell-secondary.z19.web.core.windows.net/assets/img/grinnell_logo_primary-red-white.png
-organization-logo-nav: https://digitalgrinnell-secondary.z19.web.core.windows.net/assets/img/grinnell_logo_primary-red-white.png
+organization-link: https://www.grinnell.edu/
+# used only for the footer logo link (_includes/lib-footer.html); falls back to organization-link if unset
+organization-link-libraries: https://www.grinnell.edu/academics/libraries
+organization-logo-banner: https://digitalgrinnell-secondary.z19.web.core.windows.net/assets/img/grinnell_logo_primary-red-black.png
+organization-logo-nav: https://digitalgrinnell-secondary.z19.web.core.windows.net/assets/img/grinnell_logo_primary-red-black.png
 organization-logo-footer: https://digitalgrinnell-secondary.z19.web.core.windows.net/assets/img/grinnell_logo_primary-black.png
 
 ##########
