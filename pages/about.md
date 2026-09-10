@@ -8,6 +8,8 @@ credits: true
 # Look in _includes/feature for options to easily add features to the page
 ---
 
+<!-- TEMPLATE TODO: this page still has inherited Iowa State placeholder content below. Replace the jumbotron image and copy with content describing this collection before publishing. -->
+
 {% include feature/jumbotron.html objectid="https://isuu00001library102stg.blob.core.windows.net/digital-objects/universityphotographs/rs-4-8-h_library_170-01-02.jpg" heading="Digital Collections" heading_level="h1" text="Iowa State University Library" padding="6em" %}
 
 {% include feature/nav-menu.html sections="What to Expect;How to Find the Collections;How to Use the Collections;Availability;Contact" %}

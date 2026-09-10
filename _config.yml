@@ -11,7 +11,8 @@
 # was url: https://digitalcollections.lib.iastate.edu
 url: "https://digitalgrinnell-secondary.z19.web.core.windows.net/"
 # path to location on the domain if necessary e.g. /digital/hjccc
-baseurl: "/tdps"
+# TEMPLATE: replace with this collection's slug, e.g. "/my-collection"
+baseurl: "/collection-template"
 # URL of the root Digital Grinnell portal, used by the nav "Digital Grinnell" brand link.
 # Leave blank on main (the portal itself). Set to the portal's absolute URL on every collection branch,
 # so the brand link returns visitors to the portal instead of this collection's own homepage.
@@ -47,7 +48,8 @@ author: Digital-Grinnell
 #
 # Set the metadata for your collection (the name of the CSV file in your _data directory that describes the objects in your collection) 
 # Use the filename of your CSV **without** the ".csv" extension! E.g. _data/demo-metadata.csv --> "demo-metadata"
-metadata: tdps
+# TEMPLATE: rename _data/collection-template.csv to match this collection's slug and update this value to match
+metadata: collection-template
 # page generation settings [optional!]
 # [optional: only used if you need to tweak CB defaults or generate from more than one data file]
 # page_gen:
