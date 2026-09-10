@@ -5,12 +5,12 @@ layout: item/item-page-base
 custom-foot: transcript/js/transcript-js.html;transcript/js/scrollama-js.html;transcript/js/pagedjs-js.html
 gallery: true
 ---
-{%- comment -%} Determine if transcript filename is the objectid of the item or if it is determined by the metadata's object-transcript field {%- endcomment -%}
-{% if page.object-transcript contains ".csv"%}
-{% assign transcript = page.object-transcript | remove: ".csv" %}
+{%- comment -%} Determine if transcript filename is the objectid of the item or if it is determined by the metadata's object_transcript field {%- endcomment -%}
+{% if page.object_transcript contains ".csv"%}
+{% assign transcript = page.object_transcript | remove: ".csv" %}
 {% assign items = site.data.transcripts[transcript] %}
-{% elsif page.object-transcript %}
-{% assign items = site.data.transcripts[page.object-transcript] %}
+{% elsif page.object_transcript %}
+{% assign items = site.data.transcripts[page.object_transcript] %}
 {% else %}
 {% assign items = site.data.transcripts[page.objectid] %}
 {% endif %}
