@@ -8,8 +8,8 @@
 #
 # featured image is used in home page banner and in meta markup to represent the collection
 # use either an objectid (from an item in this collect), a relative location of an image in this repo, or a full url to an image elsewhere
-featured-image: https://isuu00001library102stg.z21.web.core.windows.net/assets/media/1925_january_new_college_library.jpg
-featured-image-alt: black and white photograph of Iowa State University Library from when it was built in 1925
+featured-image: https://digitalgrinnell-secondary.z19.web.core.windows.net/assets/img/early-burling-library.jpg
+featured-image-alt: black and white photograph of early Burling Library before expansion-renovation
 # optional: add extra padding around collection title for a larger image feature. 
 home-title-y-padding: 12em # the margin from the top your title portion will appear.
 # optional: change position of background image, center, top, bottom
