@@ -9,8 +9,8 @@
 # featured image is used in home page banner and in meta markup to represent the collection
 # use either an objectid (from an item in this collect), a relative location of an image in this repo, or a full url to an image elsewhere
 # TEMPLATE TODO: replace with an image representing this collection
-featured-image: https://digitalgrinnell-secondary.z19.web.core.windows.net/assets/img/grinnell-college-logo.png
-featured-image-alt: TEMPLATE TODO replace with alt text describing the featured image
+featured-image: https://digitalgrinnell-secondary.z19.web.core.windows.net/assets/img/early-burling-library.jpg
+featured-image-alt: black and white photograph of early Burling Library before expansion-renovation
 # optional: add extra padding around collection title for a larger image feature. 
 home-title-y-padding: 12em # the margin from the top your title portion will appear.
 # optional: change position of background image, center, top, bottom
