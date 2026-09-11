@@ -99,9 +99,6 @@ bootswatch: # leave blank or comment out for plain bootstrap
 base-font-size: 1.2em
 text-color: "#191919"
 link-color: "#81312F"
-# base-font-family: # comment out for bootstrap defaults. e.g. Roboto
-# font-cdn: # add font stylesheet, e.g. <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
-# Copilot suggestions based on Grinnell College specs
 base-font-family: Georgia, Arial, sans-serif
 font-cdn: # leave empty - Georgia and Arial are web-safe system fonts
 
