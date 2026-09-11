@@ -1,5 +1,5 @@
 <footer class="mt-auto">
-    <div class="container-fluid border-top" style="background-color: #DA291C; padding: 0 5.125rem 0;">
+    <div class="container-fluid border-top footer-top" style="background-color: #fff; padding: 0 5.125rem 0;">
     <div class="container">
         <div class="row">
             <div class="col-md-6 text-center text-md-start">
@@ -10,16 +10,16 @@
         </div>
         <div class="row pb-2 text-center text-md-start">
             <div class="col-md-6">
-                <p class="text-white footer-section-label">Quick Links</p>
+                <p class="footer-section-label">Quick Links</p>
+                {%- assign navItems = site.data.config-nav | where_exp: 'item', 'item.dropdown_parent == nil' -%}
                 <div class="row">
-                    <div class="col-md-4 footer-links">
-                        {%- assign navItems = site.data.config-nav | where_exp: 'item', 'item.dropdown_parent == nil' -%}
+                    <div class="col-md-12 footer-links{% if navItems.size > 3 %} footer-links-grid{% endif %}">
                         {% for nav in navItems %}
                         {% if nav.stub %}
-                        <a href="{{ nav.stub | relative_url }}" class="footer-list">{{ nav.display_name }}</a>{% unless forloop.last %}<br>{% endunless %}
+                        <a href="{{ nav.stub | relative_url }}" class="footer-list">{{ nav.display_name }}</a>
                         {%- else -%}
                         {% assign childStub = site.data.config-nav | where_exp: 'item', 'item.dropdown_parent == nav.display_name' | first %}
-                        <a href="{{ childStub.stub | relative_url }}" class="footer-list">{{ nav.display_name }}</a>{% unless forloop.last %}<br>{% endunless %}
+                        <a href="{{ childStub.stub | relative_url }}" class="footer-list">{{ nav.display_name }}</a>
                         {% endif %}
                         {% endfor %}
                     </div>
