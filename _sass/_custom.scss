@@ -126,6 +126,20 @@ h1 {
     color: #f1be48;
 }
 
+.footer-links a {
+    display: block;
+}
+
+/* fold more than 3 quick links into a 3-column grid to keep the footer short */
+.footer-links-grid {
+    column-count: 3;
+    column-gap: 1.5rem;
+}
+
+.footer-links-grid a {
+    break-inside: avoid-column;
+}
+
 .footer-list {
     color: white;
     text-decoration: underline;
@@ -158,6 +172,19 @@ h1 {
 
 .footer-list > a:hover {
     color: #f1be48;
+}
+
+/* top footer section now has a white background, so its text needs a dark color */
+.footer-top .footer-section-label,
+.footer-top .footer-text,
+.footer-top .footer-list,
+.footer-top .footer-list > a {
+    color: #7c2529;
+}
+
+.footer-top .footer-links > a:hover,
+.footer-top .footer-list > a:hover {
+    color: #DA291C;
 }
 
 /* scroll-to-top btn-link custom styling */
