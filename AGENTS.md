@@ -28,3 +28,8 @@
 - Updated Sass files for Dart Sass module compatibility; verified with `bundle exec jekyll build --destination /tmp/cb-digital-grinnell-sass-fix-build`.
 - Restored the collection-management runbook after the TDPS revert; verified with `git diff --check -- "docs/DG-documents/Creating and Managing a Digital Content Collection.md"`.
 - Documented the verified `main` branch Azure root-site deployment procedure in the collection-management runbook.
+
+### 2026-09-10
+
+- Updated `featured-image` and `featured-image-alt` in `_data/theme.yml` across all branches (`main`, `collection-template`, `georgia-dentel`, `tdps`, and `sass-fix`) to use Digital Grinnell's early Burling Library image (`/assets/img/early-burling-library.jpg`).
+- Pushed updated branches to `origin`. Verified with `git show <branch>:_data/theme.yml`.
