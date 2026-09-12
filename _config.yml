@@ -30,6 +30,8 @@ digital-assets: https://digitalgrinnell-secondary.z19.web.core.windows.net/asset
 # title of site appears in banner.  
 # was title: Digital Collections - Iowa State University Library
 title: Digital Grinnell 
+# Label shown above the browse count for this mixed demonstration collection.
+collection-title: Demo Collections
 # tagline, a short phrase that will appear throughout the site in the top banner
 tagline:
 # description appears in meta tags and other locations

@@ -16,7 +16,8 @@ custom-foot: js/browse-js.html
             </div>
         </form>
         {%- assign collection_record = site.data.digital_collections | where: "objectid", site.metadata | first -%}
-        {% if collection_record.title %}<h1 class="h2 mb-1">{{ collection_record.title | escape }}</h1>{% endif %}
+        {% assign browse_collection_title = site.collection-title | default: collection_record.title %}
+        {% if browse_collection_title %}<h1 class="h2 mb-1">{{ browse_collection_title | escape }}</h1>{% endif %}
         <div class="h2" id="numberOf"></div>
     </div>
     <div class="col-md-2">
