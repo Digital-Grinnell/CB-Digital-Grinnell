@@ -8,6 +8,8 @@ var items = [
     { {% for f in fields %}{% if item[f.field] %}{{ f.field | escape | jsonify }}:{{ item[f.field] | strip | jsonify }}, {%- endif -%}{%- endfor -%}
         {% if item.image_thumb %}"img": {{ item.image_thumb | relative_url | jsonify }}, {%- endif -%}
         {% if item.image_alt_text %}"alt": {{ item.image_alt_text | escape | jsonify }}, {%- endif -%}
+        {% if item.display_template %}"template": {{ item.display_template | escape | jsonify }}, {%- endif -%}
+        {% if item.format %}"format": {{ item.format | escape | jsonify }}, {%- endif -%}
         "title":{{ item.title | strip | escape | jsonify }},
         {% if item.tagline %}"tagline": {{ item.tagline | strip | escape | jsonify }}, {% endif %}
         "description": {{ item.description | jsonify }},
@@ -24,15 +26,14 @@ function makeCard(obj) {
     // find item link
     var itemHref = obj.link; 
     // find image
-    var imgSrc, thumbIcon;
+    var thumbContent;
     // if there is a thumb in the csv display it
     if(obj.img) {
-        imgSrc = obj.img;
+        thumbContent = `<img class="card-img-top fixed-height lazyload" src="${placeholder}" data-src="${obj.img}" alt="${obj.alt ? obj.alt : obj.title}">`;
     // else add an icon based on display_template or format
     } else {
-        thumbIcon = getIcon(obj.template,obj.format,"thumb");
+        thumbContent = getIcon(obj.template,obj.format,"thumb");
     }
-    var imgAlt = obj.alt ? obj.alt : obj.title;
     
     // other fields
     var otherFields;
@@ -57,7 +58,7 @@ function makeCard(obj) {
     // build card
     var card = `<div class="item col-lg-4 col-md-6 mb-4">
         <div class="card">
-            <a href="${itemHref}" title="link to ${obj.title}"><img class="card-img-top fixed-height lazyload " src="${placeholder}" data-src="${imgSrc}" alt="${imgAlt}"></a>
+            <a href="${itemHref}" title="link to ${obj.title}">${thumbContent}</a>
             <div class="card-body text-center">
                 <h3 class="card-title "><a href="${itemHref}" class="text-dark">${obj.title}</a></h3>
                 ${ obj.tagline ? `<p><small>${obj.tagline}</small></p>` : ``}

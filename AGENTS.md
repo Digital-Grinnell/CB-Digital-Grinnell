@@ -34,3 +34,7 @@
 - Updated `featured-image` and `featured-image-alt` in `_data/theme.yml` across all branches (`main`, `collection-template`, `georgia-dentel`, `tdps`, and `sass-fix`) to use Digital Grinnell's early Burling Library image (`/assets/img/early-burling-library.jpg`).
 - Updated `.site-title` styling in `_sass/_custom.scss` across all branches to use `grinnell_red` (`#DA291C`).
 - Pushed updated branches to `origin`. Verified with `git show <branch>:_sass/_custom.scss`.
+
+### 2026-09-12
+
+- Fixed browse cards so items without thumbnails render the configured MIME/display-template icon instead of an empty lazy-loaded image. Verified with a clean Jekyll build to `/tmp/cb-digital-grinnell-icon-check-2` and `git diff --check`.
