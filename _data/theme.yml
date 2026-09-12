@@ -110,11 +110,11 @@ font-cdn: # leave empty - Georgia and Arial are web-safe system fonts
 # the template uses Bootstrap Icons, https://icons.getbootstrap.com/
 # find the names on the BI icons page, e.g. file-image
 #
-icons: 
+icons:
   icon-image: image
   icon-audio: soundwave
   icon-video: film
-  icon-pdf: file-pdf
+  icon-pdf: file-richtext
   icon-record: file-text
   icon-panorama: image-alt
   icon-compound-object: collection 
