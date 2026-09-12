@@ -11,6 +11,7 @@
 
 - Read relevant nearby files before making changes.
 - Keep changes focused and validate them with the narrowest applicable command.
+- Never deploy `collection-template`; it is a source template for building other collection branches.
 - Add a dated entry below after meaningful changes, deployment work, or important findings.
 - Record the command or validation performed, but never its sensitive output.
 
@@ -34,3 +35,7 @@
 - Updated `featured-image` and `featured-image-alt` in `_data/theme.yml` across all branches (`main`, `collection-template`, `georgia-dentel`, `tdps`, and `sass-fix`) to use Digital Grinnell's early Burling Library image (`/assets/img/early-burling-library.jpg`).
 - Updated `.site-title` styling in `_sass/_custom.scss` across all branches to use `grinnell_red` (`#DA291C`).
 - Pushed updated branches to `origin`. Verified with `git show <branch>:_sass/_custom.scss`.
+
+### 2026-09-12
+
+- Recorded that `collection-template` is never a deployment target; it is used only as a source template for other collection branches.

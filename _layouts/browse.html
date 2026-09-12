@@ -15,7 +15,8 @@ custom-foot: js/browse-js.html
                 <button class="btn btn-outline-secondary filter" onclick="resetFilter(); return false;" data-filter="">Reset</button>
             </div>
         </form>
-        {%- assign collection_record = site.data.digital_collections | where: "objectid", site.metadata | first -%}
+        {%- assign collection_slug = site.baseurl | remove_first: '/' -%}
+        {%- assign collection_record = site.data.digital_collections | where: "objectid", collection_slug | first -%}
         {% if collection_record.title %}<h1 class="h2 mb-1">{{ collection_record.title | escape }}</h1>{% endif %}
         <div class="h2" id="numberOf"></div>
     </div>
