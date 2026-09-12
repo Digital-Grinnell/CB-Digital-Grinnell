@@ -98,22 +98,25 @@ bootswatch: # leave blank or comment out for plain bootstrap
 base-font-size: 1.2em
 text-color: "#191919"
 link-color: "#81312F"
-base-font-family: # comment out for bootstrap defaults. e.g. Roboto
-font-cdn: # add font stylesheet, e.g. <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+# base-font-family: # comment out for bootstrap defaults. e.g. Roboto
+# font-cdn: # add font stylesheet, e.g. <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+# Copilot suggestions based on Grinnell College specs
+base-font-family: Georgia, Arial, sans-serif
+font-cdn: # leave empty - Georgia and Arial are web-safe system fonts
 
 # THEME ICONS [optional!]
 # default icons can be overridden or new icons can be added using "icons" object
 # the template uses Bootstrap Icons, https://icons.getbootstrap.com/
 # find the names on the BI icons page, e.g. file-image
 #
-# icons: 
-#   icon-image: image
-#   icon-audio: soundwave
-#   icon-video: film
-#   icon-pdf: file-pdf
-#   icon-record: file-text
-#   icon-panorama: image-alt
-#   icon-compound-object: collection 
-#   icon-multiple: postcard
-#   icon-default: file-earmark # fall back icon
-#   icon-back-to-top: arrow-up-square
+icons: 
+  icon-image: image
+  icon-audio: soundwave
+  icon-video: film
+  icon-pdf: file-pdf
+  icon-record: file-text
+  icon-panorama: image-alt
+  icon-compound-object: collection 
+  icon-multiple: postcard
+  icon-default: file-earmark # fall back icon
+  icon-back-to-top: arrow-up-square
